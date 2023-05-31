@@ -9,7 +9,7 @@ public class Movement : MonoBehaviour
     [SerializeField] private float jumpMagnitude = 5f;
     [SerializeField] private BoxCollider2D footCollider;
     [SerializeField][Range(1, 3)] private int id = 1;
-    int selectedPlayer = 1;
+    private int selectedPlayer = 1;
     private Rigidbody2D myRigidBody;
     private Vector2 moveInput;
     private bool isJumpBufferCooldown = false;
