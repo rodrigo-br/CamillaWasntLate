@@ -9,6 +9,7 @@ public class Movement : MonoBehaviour
     [SerializeField] private float jumpMagnitude = 5f;
     [SerializeField] private BoxCollider2D footCollider;
     [SerializeField][Range(1, 3)] private int id = 1;
+    [SerializeField] GameObject selectedSprite;
     private int selectedPlayer = 1;
     private Rigidbody2D myRigidBody;
     private Vector2 moveInput;
@@ -18,6 +19,11 @@ public class Movement : MonoBehaviour
     private void Awake()
     {
         myRigidBody = GetComponent<Rigidbody2D>();
+    }
+
+    void Start()
+    {
+        selectedSprite.SetActive(id == 1);
     }
 
     private void Update()
@@ -55,14 +61,11 @@ public class Movement : MonoBehaviour
         isJumpBufferCooldown = false;
     }
 
-    private void OnSelectPlayer(InputValue value)
+    public void SetSelectedPlayer(int selected)
     {
-        int pressed = (int)value.Get<float>();
-        if (pressed != 0)
-        {
-            selectedPlayer = pressed;
-        }
-    }
+        selectedPlayer = selected;
+        selectedSprite.SetActive(CanMove());
+    } 
 
     private bool CanMove() => selectedPlayer == id;
 }

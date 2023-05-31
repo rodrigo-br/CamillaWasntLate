@@ -1,0 +1,56 @@
+{
+    "name": "InputActivePlayerManager",
+    "maps": [
+        {
+            "name": "SelectPlayerMap",
+            "id": "a04ea840-dc56-4514-8b35-96d971fa3936",
+            "actions": [
+                {
+                    "name": "SelectPlayer",
+                    "type": "Value",
+                    "id": "cf59da88-286e-4a7e-a447-a92cb8970775",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": true
+                }
+            ],
+            "bindings": [
+                {
+                    "name": "",
+                    "id": "624b68aa-cd23-4c9c-9887-a0dddd2117b6",
+                    "path": "<Keyboard>/1",
+                    "interactions": "",
+                    "processors": "Scale",
+                    "groups": "",
+                    "action": "SelectPlayer",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "38d98181-a347-4ca5-9560-9c7e793152f6",
+                    "path": "<Keyboard>/2",
+                    "interactions": "",
+                    "processors": "Scale(factor=2)",
+                    "groups": "",
+                    "action": "SelectPlayer",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "69e5f07e-a014-4ea0-9b85-5a2e993fb176",
+                    "path": "<Keyboard>/3",
+                    "interactions": "",
+                    "processors": "Scale(factor=3)",
+                    "groups": "",
+                    "action": "SelectPlayer",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                }
+            ]
+        }
+    ],
+    "controlSchemes": []
+}
