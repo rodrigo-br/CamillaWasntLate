@@ -29,12 +29,12 @@ public partial class @InputPlayer: IInputActionCollection2, IDisposable
             ""actions"": [
                 {
                     ""name"": ""Move"",
-                    ""type"": ""Value"",
+                    ""type"": ""PassThrough"",
                     ""id"": ""acf3aebc-2fc4-4e32-abdf-cb0da79f9732"",
                     ""expectedControlType"": ""Vector2"",
                     ""processors"": """",
                     ""interactions"": """",
-                    ""initialStateCheck"": true
+                    ""initialStateCheck"": false
                 },
                 {
                     ""name"": ""Fire"",
@@ -53,15 +53,6 @@ public partial class @InputPlayer: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
-                },
-                {
-                    ""name"": ""SelectPlayer"",
-                    ""type"": ""Value"",
-                    ""id"": ""ff97f5e4-2abf-472d-a8ce-f28407adf09d"",
-                    ""expectedControlType"": """",
-                    ""processors"": """",
-                    ""interactions"": """",
-                    ""initialStateCheck"": true
                 }
             ],
             ""bindings"": [
@@ -260,39 +251,6 @@ public partial class @InputPlayer: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""groups"": """",
                     ""action"": ""Jump"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
-                    ""id"": ""d85f21bc-cd9b-4f35-8489-f6e29144e7b0"",
-                    ""path"": ""<Keyboard>/1"",
-                    ""interactions"": """",
-                    ""processors"": ""Scale"",
-                    ""groups"": """",
-                    ""action"": ""SelectPlayer"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
-                    ""id"": ""696edceb-7f74-4d0f-93e3-bfff7f6b7ec7"",
-                    ""path"": ""<Keyboard>/2"",
-                    ""interactions"": """",
-                    ""processors"": ""Scale(factor=2)"",
-                    ""groups"": """",
-                    ""action"": ""SelectPlayer"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
-                    ""id"": ""615f2ca8-e106-455a-83df-f14c4cbe5c51"",
-                    ""path"": ""<Keyboard>/3"",
-                    ""interactions"": """",
-                    ""processors"": ""Scale(factor=3)"",
-                    ""groups"": """",
-                    ""action"": ""SelectPlayer"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -883,7 +841,6 @@ public partial class @InputPlayer: IInputActionCollection2, IDisposable
         m_Player_Move = m_Player.FindAction("Move", throwIfNotFound: true);
         m_Player_Fire = m_Player.FindAction("Fire", throwIfNotFound: true);
         m_Player_Jump = m_Player.FindAction("Jump", throwIfNotFound: true);
-        m_Player_SelectPlayer = m_Player.FindAction("SelectPlayer", throwIfNotFound: true);
         // UI
         m_UI = asset.FindActionMap("UI", throwIfNotFound: true);
         m_UI_Navigate = m_UI.FindAction("Navigate", throwIfNotFound: true);
@@ -960,7 +917,6 @@ public partial class @InputPlayer: IInputActionCollection2, IDisposable
     private readonly InputAction m_Player_Move;
     private readonly InputAction m_Player_Fire;
     private readonly InputAction m_Player_Jump;
-    private readonly InputAction m_Player_SelectPlayer;
     public struct PlayerActions
     {
         private @InputPlayer m_Wrapper;
@@ -968,7 +924,6 @@ public partial class @InputPlayer: IInputActionCollection2, IDisposable
         public InputAction @Move => m_Wrapper.m_Player_Move;
         public InputAction @Fire => m_Wrapper.m_Player_Fire;
         public InputAction @Jump => m_Wrapper.m_Player_Jump;
-        public InputAction @SelectPlayer => m_Wrapper.m_Player_SelectPlayer;
         public InputActionMap Get() { return m_Wrapper.m_Player; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -987,9 +942,6 @@ public partial class @InputPlayer: IInputActionCollection2, IDisposable
             @Jump.started += instance.OnJump;
             @Jump.performed += instance.OnJump;
             @Jump.canceled += instance.OnJump;
-            @SelectPlayer.started += instance.OnSelectPlayer;
-            @SelectPlayer.performed += instance.OnSelectPlayer;
-            @SelectPlayer.canceled += instance.OnSelectPlayer;
         }
 
         private void UnregisterCallbacks(IPlayerActions instance)
@@ -1003,9 +955,6 @@ public partial class @InputPlayer: IInputActionCollection2, IDisposable
             @Jump.started -= instance.OnJump;
             @Jump.performed -= instance.OnJump;
             @Jump.canceled -= instance.OnJump;
-            @SelectPlayer.started -= instance.OnSelectPlayer;
-            @SelectPlayer.performed -= instance.OnSelectPlayer;
-            @SelectPlayer.canceled -= instance.OnSelectPlayer;
         }
 
         public void RemoveCallbacks(IPlayerActions instance)
@@ -1191,7 +1140,6 @@ public partial class @InputPlayer: IInputActionCollection2, IDisposable
         void OnMove(InputAction.CallbackContext context);
         void OnFire(InputAction.CallbackContext context);
         void OnJump(InputAction.CallbackContext context);
-        void OnSelectPlayer(InputAction.CallbackContext context);
     }
     public interface IUIActions
     {

@@ -7,12 +7,12 @@
             "actions": [
                 {
                     "name": "Move",
-                    "type": "Value",
+                    "type": "PassThrough",
                     "id": "acf3aebc-2fc4-4e32-abdf-cb0da79f9732",
                     "expectedControlType": "Vector2",
                     "processors": "",
                     "interactions": "",
-                    "initialStateCheck": true
+                    "initialStateCheck": false
                 },
                 {
                     "name": "Fire",
@@ -31,15 +31,6 @@
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": false
-                },
-                {
-                    "name": "SelectPlayer",
-                    "type": "Value",
-                    "id": "ff97f5e4-2abf-472d-a8ce-f28407adf09d",
-                    "expectedControlType": "",
-                    "processors": "",
-                    "interactions": "",
-                    "initialStateCheck": true
                 }
             ],
             "bindings": [
@@ -238,39 +229,6 @@
                     "processors": "",
                     "groups": "",
                     "action": "Jump",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
-                    "id": "d85f21bc-cd9b-4f35-8489-f6e29144e7b0",
-                    "path": "<Keyboard>/1",
-                    "interactions": "",
-                    "processors": "Scale",
-                    "groups": "",
-                    "action": "SelectPlayer",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
-                    "id": "696edceb-7f74-4d0f-93e3-bfff7f6b7ec7",
-                    "path": "<Keyboard>/2",
-                    "interactions": "",
-                    "processors": "Scale(factor=2)",
-                    "groups": "",
-                    "action": "SelectPlayer",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
-                    "id": "615f2ca8-e106-455a-83df-f14c4cbe5c51",
-                    "path": "<Keyboard>/3",
-                    "interactions": "",
-                    "processors": "Scale(factor=3)",
-                    "groups": "",
-                    "action": "SelectPlayer",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

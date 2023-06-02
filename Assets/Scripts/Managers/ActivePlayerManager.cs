@@ -6,7 +6,7 @@ using Cinemachine;
 
 public class ActivePlayerManager : MonoBehaviour
 {
-    [SerializeField] private Movement[] playersInScene;
+    [SerializeField] private PlayerKinematic[] playersInScene;
     [SerializeField] CinemachineStateDrivenCamera sdCamera;
 
     void Start()
@@ -17,10 +17,10 @@ public class ActivePlayerManager : MonoBehaviour
     private void OnSelectPlayer(InputValue value)
     {
         int pressed = (int)value.Get<float>();
-        if (pressed != 0)
+        if (pressed != 0 && pressed <= playersInScene.Length)
         {
             sdCamera.Follow = playersInScene[pressed - 1].transform;
-            foreach (Movement player in playersInScene)
+            foreach (PlayerKinematic player in playersInScene)
             {
                 player.SetSelectedPlayer(pressed);
             }
