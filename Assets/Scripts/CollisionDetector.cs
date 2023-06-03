@@ -4,10 +4,16 @@ using UnityEngine;
 
 public class CollisionDetector : MonoBehaviour
 {
-    [SerializeField] Collider2D colliderToCast;
+    [SerializeField] BoxCollider2D colliderToCast;
     [SerializeField] private float defaultDistance = 0.03f;
 
     public RaycastHit2D[] collisionResults { get; private set; }
+
+    void Start()
+    {
+        Debug.Log("colliderToCast.size.x: " + colliderToCast.size.x);
+        Debug.Log("colliderToCast.size.y: " + colliderToCast.size.y);
+    }
 
     public bool CheckCollisionIn(Vector2 direction)
     {

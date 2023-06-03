@@ -19,6 +19,7 @@ public class PlayerKinematic : MonoBehaviour
     private Vector2 movementInput;
     private float halfPlayerHeight, halfPlayerWidth;
     private InputPlayer inputPlayer;
+    public int Id => id;
 
     private void Awake()
     {
@@ -37,6 +38,8 @@ public class PlayerKinematic : MonoBehaviour
 
     void Start()
     {
+        Debug.Log("mySpriteRenderer.bounds.size.x: " + mySpriteRenderer.bounds.size.x);
+        Debug.Log("mySpriteRenderer.bounds.size.y: " + mySpriteRenderer.bounds.size.y);
         halfPlayerHeight = mySpriteRenderer.bounds.size.y / 2;
         halfPlayerWidth = mySpriteRenderer.bounds.size.x / 2;
         selectedSprite.SetActive(id == 1);
@@ -154,7 +157,7 @@ public class PlayerKinematic : MonoBehaviour
     {
         (bool upCollision, RaycastHit2D hitResult) = CheckCollisionUp();
 
-        if (upCollision)
+        if (upCollision && !hitResult.collider.isTrigger)
         {
             currentState = State.Falling;
             agentMover.StopMovementY();
@@ -169,10 +172,11 @@ public class PlayerKinematic : MonoBehaviour
     {
 
         bool horizontalMovementCollision;
+        RaycastHit2D hit;
 
-        (horizontalMovementCollision, _) = CheckCollisionForMovement();
+        (horizontalMovementCollision, hit) = CheckCollisionForMovement();
 
-        if (horizontalMovementCollision)
+        if (horizontalMovementCollision && !hit.collider.isTrigger)
         {
             agentMover.StopMovementX();
         }
@@ -193,16 +197,17 @@ public class PlayerKinematic : MonoBehaviour
     private void HandleCollisionMovement()
     {
         bool horizontalMovementCollision;
+        RaycastHit2D hit;
 
-        (horizontalMovementCollision, _) = CheckCollisionForMovement();
+        (horizontalMovementCollision, hit) = CheckCollisionForMovement();
 
-        if (horizontalMovementCollision)
+        if (horizontalMovementCollision && !hit.collider.isTrigger)
         {
             agentMover.StopMovementX();
         }
     }
 
-    private (bool horizontalMovementCollision, object _) CheckCollisionForMovement()
+    private (bool horizontalMovementCollision, RaycastHit2D _) CheckCollisionForMovement()
     {
         return (collisionDetector.CheckCollisionIn(
             agentMover.CurrentVelocity.normalized,
@@ -214,7 +219,7 @@ public class PlayerKinematic : MonoBehaviour
     {
         RaycastHit2D hitResult;
         (grounded, hitResult) = CheckIfGrounded();
-        if (grounded)
+        if (grounded && !hitResult.collider.isTrigger)
         {
             currentState = State.Idle;
             agentMover.StopMovementBothAxis();
