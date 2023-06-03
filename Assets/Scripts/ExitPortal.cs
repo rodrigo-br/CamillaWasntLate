@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class ExitPortal : MonoBehaviour
 {
+    public delegate void PortalChange(int value);
+    public PortalChange OnPortalChange; 
     [SerializeField][Range(1, 3)] int id;
     Animator myAnimator;
 
@@ -19,6 +21,7 @@ public class ExitPortal : MonoBehaviour
         if (player != null && player.Id == id)
         {
             myAnimator.SetBool("IsTouchingOwner", true);
+            OnPortalChange?.Invoke(1);
         }
     }
 
@@ -29,6 +32,7 @@ public class ExitPortal : MonoBehaviour
         if (player != null && player.Id == id)
         {
             myAnimator.SetBool("IsTouchingOwner", false);
+            OnPortalChange?.Invoke(-1);
         }
     }
 }

@@ -7,6 +7,7 @@ public class Dissolve : MonoBehaviour
     [SerializeField] Material defaultMaterial;
     [SerializeField] Material dissolveMaterial;
     [SerializeField] float dissolveSpeed = 1f;
+    [SerializeField] PortalsManager portalsManager;
     SpriteRenderer mySpriteRenderer;
 
     void Awake()
@@ -14,12 +15,14 @@ public class Dissolve : MonoBehaviour
         mySpriteRenderer = GetComponent<SpriteRenderer>();
     }
 
-    void Update()
+    void OnEnable()
     {
-        if (Input.GetKeyDown("m"))
-        {
-            PlayDissolve();
-        }
+        portalsManager.OnEndLevel += PlayDissolve;
+    }
+    
+    void OnDisable()
+    {
+        portalsManager.OnEndLevel -= PlayDissolve;
     }
 
     public void PlayDissolve()
@@ -38,5 +41,7 @@ public class Dissolve : MonoBehaviour
             mySpriteRenderer.material.SetFloat("_Dissolve", t);
             yield return null;
         }
+        yield return new WaitForSeconds(0.1f);
+        ScenesManager.Instance.LoadNextScene();
     }
 }
