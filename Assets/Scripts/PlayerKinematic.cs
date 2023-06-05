@@ -11,8 +11,7 @@ public class PlayerKinematic : MonoBehaviour
     [SerializeField] private bool justJumped = false;
     [SerializeField] private State currentState = State.Idle;
     [SerializeField] private bool grounded = false;
-    [SerializeField] private float safetyDistance = 0.01f;
-    [SerializeField] private SpriteRenderer mySpriteRenderer;
+    [SerializeField] private float safetyDistance = 0.02f;
     [SerializeField][Range(1, 3)] private int id = 1;
     [SerializeField] private GameObject selectedSprite;
     private int selectedPlayer = 1;
@@ -38,10 +37,8 @@ public class PlayerKinematic : MonoBehaviour
 
     void Start()
     {
-        Debug.Log("mySpriteRenderer.bounds.size.x: " + mySpriteRenderer.bounds.size.x);
-        Debug.Log("mySpriteRenderer.bounds.size.y: " + mySpriteRenderer.bounds.size.y);
-        halfPlayerHeight = mySpriteRenderer.bounds.size.y / 2;
-        halfPlayerWidth = mySpriteRenderer.bounds.size.x / 2;
+        halfPlayerHeight = collisionDetector.ColliderToCast.size.y / 2;
+        halfPlayerWidth = collisionDetector.ColliderToCast.size.x / 2;
         selectedSprite.SetActive(id == 1);
         inputPlayer.Player.Jump.started += _ => Jump();
     }
@@ -157,14 +154,14 @@ public class PlayerKinematic : MonoBehaviour
     {
         (bool upCollision, RaycastHit2D hitResult) = CheckCollisionUp();
 
-        if (upCollision && !hitResult.collider.isTrigger)
+        if (upCollision)
         {
             currentState = State.Falling;
             agentMover.StopMovementY();
         }
         else
         {
-            // O que colocar neste else?
+            // I have no idea. Halp!
         }
     }
 
@@ -176,7 +173,7 @@ public class PlayerKinematic : MonoBehaviour
 
         (horizontalMovementCollision, hit) = CheckCollisionForMovement();
 
-        if (horizontalMovementCollision && !hit.collider.isTrigger)
+        if (horizontalMovementCollision)
         {
             agentMover.StopMovementX();
         }
@@ -197,11 +194,10 @@ public class PlayerKinematic : MonoBehaviour
     private void HandleCollisionMovement()
     {
         bool horizontalMovementCollision;
-        RaycastHit2D hit;
 
-        (horizontalMovementCollision, hit) = CheckCollisionForMovement();
+        (horizontalMovementCollision, _) = CheckCollisionForMovement();
 
-        if (horizontalMovementCollision && !hit.collider.isTrigger)
+        if (horizontalMovementCollision)
         {
             agentMover.StopMovementX();
         }
@@ -217,25 +213,32 @@ public class PlayerKinematic : MonoBehaviour
 
     void HandleCollisionMovementDown()
     {
-        RaycastHit2D hitResult;
+        RaycastHit2D[] hitResult = new RaycastHit2D[2];
         (grounded, hitResult) = CheckIfGrounded();
-        if (grounded && !hitResult.collider.isTrigger)
+        if (grounded)
         {
             currentState = State.Idle;
             agentMover.StopMovementBothAxis();
-            float distance = hitResult.distance - safetyDistance;
+            float distance = 0;
+            for (int i = 0; i < hitResult.Length; i++)
+            {
+                if (hitResult[i].collider != null && !hitResult[i].collider.isTrigger)
+                {
+                    distance = hitResult[i].distance - safetyDistance;
+                }
+            }
             agentMover.ForceMovement(new Vector2(0, -distance));
         }
     }
 
-    (bool, RaycastHit2D) CheckIfGrounded(bool addExtraDistance = false)
+    (bool, RaycastHit2D[]) CheckIfGrounded(bool addExtraDistance = false)
     {
         float extraDistance = addExtraDistance ? safetyDistance * 2 : safetyDistance;
 
         return (collisionDetector.CheckCollisionIn(
             Vector2.down,
             Mathf.Abs(agentMover.CurrentVelocity.y) * Time.fixedDeltaTime + extraDistance),
-            collisionDetector.collisionResults[0]);
+            collisionDetector.collisionResults);
     }
 
     public void SetSelectedPlayer(int selected)
