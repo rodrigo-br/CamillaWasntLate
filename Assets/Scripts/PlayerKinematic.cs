@@ -169,7 +169,7 @@ public class PlayerKinematic : MonoBehaviour
     {
 
         bool horizontalMovementCollision;
-        RaycastHit2D hit;
+        RaycastHit2D[] hit;
 
         (horizontalMovementCollision, hit) = CheckCollisionForMovement();
 
@@ -194,26 +194,34 @@ public class PlayerKinematic : MonoBehaviour
     private void HandleCollisionMovement()
     {
         bool horizontalMovementCollision;
+        RaycastHit2D[] hitResult = new RaycastHit2D[3];
 
-        (horizontalMovementCollision, _) = CheckCollisionForMovement();
+        (horizontalMovementCollision, hitResult) = CheckCollisionForMovement();
 
         if (horizontalMovementCollision)
         {
-            agentMover.StopMovementX();
+            for (int i = 0; i < hitResult.Length; i++)
+            {
+                if (hitResult[i].collider != null && !hitResult[i].collider.isTrigger)
+                {
+                    agentMover.StopMovementX();
+                    break ;
+                }
+            }
         }
     }
 
-    private (bool horizontalMovementCollision, RaycastHit2D _) CheckCollisionForMovement()
+    private (bool horizontalMovementCollision, RaycastHit2D[] _) CheckCollisionForMovement()
     {
         return (collisionDetector.CheckCollisionIn(
             agentMover.CurrentVelocity.normalized,
             agentMover.CurrentVelocity.magnitude * Time.fixedDeltaTime + safetyDistance),
-            collisionDetector.collisionResults[0]);
+            collisionDetector.collisionResults);
     }
 
     void HandleCollisionMovementDown()
     {
-        RaycastHit2D[] hitResult = new RaycastHit2D[2];
+        RaycastHit2D[] hitResult = new RaycastHit2D[3];
         (grounded, hitResult) = CheckIfGrounded();
         if (grounded)
         {

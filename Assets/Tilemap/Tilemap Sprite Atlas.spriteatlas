@@ -43,80 +43,13 @@ SpriteAtlas:
       enableAlphaDilation: 0
     secondaryTextureSettings: {}
     variantMultiplier: 1
-    packables:
-    - {fileID: 102900000, guid: 993143dc0830fdb4cb3f283af2cd76bc, type: 3}
+    packables: []
     bindAsDefault: 1
     isAtlasV2: 0
     cachedData: {fileID: 0}
   m_MasterAtlas: {fileID: 0}
-  m_PackedSprites:
-  - {fileID: 1508143996, guid: d7637720a6e11f040aec28acc52caa42, type: 3}
-  - {fileID: 167320114, guid: d7637720a6e11f040aec28acc52caa42, type: 3}
-  - {fileID: 1669438917, guid: d7637720a6e11f040aec28acc52caa42, type: 3}
-  - {fileID: 2067471747, guid: d7637720a6e11f040aec28acc52caa42, type: 3}
-  - {fileID: -774268223, guid: d7637720a6e11f040aec28acc52caa42, type: 3}
-  - {fileID: 245815129, guid: d7637720a6e11f040aec28acc52caa42, type: 3}
-  - {fileID: -1612705263, guid: d7637720a6e11f040aec28acc52caa42, type: 3}
-  - {fileID: 2030304953, guid: d7637720a6e11f040aec28acc52caa42, type: 3}
-  - {fileID: 66771511, guid: d7637720a6e11f040aec28acc52caa42, type: 3}
-  - {fileID: 1131572225, guid: d7637720a6e11f040aec28acc52caa42, type: 3}
-  - {fileID: -1054130990, guid: d7637720a6e11f040aec28acc52caa42, type: 3}
-  - {fileID: 865207081, guid: d7637720a6e11f040aec28acc52caa42, type: 3}
-  - {fileID: 1110964389, guid: d7637720a6e11f040aec28acc52caa42, type: 3}
-  - {fileID: -482679152, guid: d7637720a6e11f040aec28acc52caa42, type: 3}
-  - {fileID: 1302856170, guid: d7637720a6e11f040aec28acc52caa42, type: 3}
-  - {fileID: 1420918886, guid: d7637720a6e11f040aec28acc52caa42, type: 3}
-  - {fileID: -594059083, guid: d7637720a6e11f040aec28acc52caa42, type: 3}
-  - {fileID: -1442002771, guid: d7637720a6e11f040aec28acc52caa42, type: 3}
-  - {fileID: -362429176, guid: d7637720a6e11f040aec28acc52caa42, type: 3}
-  - {fileID: -929670522, guid: d7637720a6e11f040aec28acc52caa42, type: 3}
-  - {fileID: -590633587, guid: d7637720a6e11f040aec28acc52caa42, type: 3}
-  - {fileID: 308272819, guid: d7637720a6e11f040aec28acc52caa42, type: 3}
-  - {fileID: -2075350195, guid: d7637720a6e11f040aec28acc52caa42, type: 3}
-  - {fileID: 272024002, guid: 3b4fd31a75758d045b580241be0859dd, type: 3}
-  - {fileID: -782051449, guid: 3b4fd31a75758d045b580241be0859dd, type: 3}
-  - {fileID: 1196400797, guid: 3b4fd31a75758d045b580241be0859dd, type: 3}
-  - {fileID: 1994929421, guid: 3b4fd31a75758d045b580241be0859dd, type: 3}
-  - {fileID: 1023349119, guid: 3b4fd31a75758d045b580241be0859dd, type: 3}
-  - {fileID: -761327230, guid: 3b4fd31a75758d045b580241be0859dd, type: 3}
-  - {fileID: -1737138969, guid: 3b4fd31a75758d045b580241be0859dd, type: 3}
-  - {fileID: -520084719, guid: 3b4fd31a75758d045b580241be0859dd, type: 3}
-  - {fileID: 904147440, guid: 3b4fd31a75758d045b580241be0859dd, type: 3}
-  - {fileID: -1042947703, guid: 3b4fd31a75758d045b580241be0859dd, type: 3}
-  m_PackedSpriteNamesToIndex:
-  - plataform_20
-  - plataform_21
-  - plataform_22
-  - plataform_19
-  - plataform_18
-  - plataform_15
-  - plataform_14
-  - plataform_17
-  - plataform_16
-  - plataform_11
-  - plataform_10
-  - plataform_13
-  - plataform_12
-  - plataform_8
-  - plataform_9
-  - plataform_6
-  - plataform_7
-  - plataform_4
-  - plataform_5
-  - plataform_2
-  - plataform_3
-  - plataform_0
-  - plataform_1
-  - plataform3_7
-  - plataform3_6
-  - plataform3_5
-  - plataform3_4
-  - plataform3_3
-  - plataform3_2
-  - plataform3_1
-  - plataform3_0
-  - plataform3_9
-  - plataform3_8
+  m_PackedSprites: []
+  m_PackedSpriteNamesToIndex: []
   m_RenderDataMap: {}
   m_Tag: Tilemap Sprite Atlas
   m_IsVariant: 0

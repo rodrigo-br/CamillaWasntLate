@@ -14,10 +14,11 @@ public class ScenesManager : Singleton<ScenesManager>
     public void ReloadLevel() => SceneManager.LoadScene(BuildSceneIndex());
     public void LoadNextScene()
     {
-        int sceneIndex = BuildSceneIndex();
-        if (sceneIndex < SceneManager.sceneCount)
+        int nextSceneIndex = BuildSceneIndex() + 1;
+        Debug.Log(nextSceneIndex + " " + SceneManager.sceneCountInBuildSettings);
+        if (nextSceneIndex < SceneManager.sceneCountInBuildSettings)
         {
-            SceneManager.LoadScene(sceneIndex + 1);
+            SceneManager.LoadScene(nextSceneIndex);
         }
         else
         {
