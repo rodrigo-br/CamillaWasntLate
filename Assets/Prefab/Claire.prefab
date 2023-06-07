@@ -194,7 +194,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   myRigidBody: {fileID: 9040295247675063784}
   moveSpeed: 4
-  jumpPower: 4.2
+  jumpHeight: 1.46
+  maxAcceleration: 20
+  maxAirAcceleration: 20
+  downwardMovementMultiplier: 3
+  upwardMovementMultiplier: 1.7
 --- !u!1 &9040295247282858929
 GameObject:
   m_ObjectHideFlags: 0

@@ -6,6 +6,8 @@ using Cinemachine;
 
 public class ActivePlayerManager : MonoBehaviour
 {
+    public delegate void SelectedPlayer(int value);
+    public SelectedPlayer OnSelectedPlayer;
     [SerializeField] private PlayerKinematic[] playersInScene;
     [SerializeField] CinemachineVirtualCamera virtualCamera;
 
@@ -23,7 +25,10 @@ public class ActivePlayerManager : MonoBehaviour
             foreach (PlayerKinematic player in playersInScene)
             {
                 player.SetSelectedPlayer(pressed);
+                OnSelectedPlayer?.Invoke(pressed);
             }
         }
     }
+
+    public int GetNumberOfPlayersInScene() => playersInScene.Length;
 }
