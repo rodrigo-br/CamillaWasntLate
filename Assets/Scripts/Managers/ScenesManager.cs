@@ -15,7 +15,6 @@ public class ScenesManager : Singleton<ScenesManager>
     public void LoadNextScene()
     {
         int nextSceneIndex = BuildSceneIndex() + 1;
-        Debug.Log(nextSceneIndex + " " + SceneManager.sceneCountInBuildSettings);
         if (nextSceneIndex < SceneManager.sceneCountInBuildSettings)
         {
             SceneManager.LoadScene(nextSceneIndex);

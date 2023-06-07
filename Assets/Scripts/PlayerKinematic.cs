@@ -81,7 +81,7 @@ public class PlayerKinematic : MonoBehaviour
         HandleJumpState();
         HandleFallState();
 
-        agentMover.PerformMovement();
+        agentMover.PerformMovement(grounded);
     }
 
     private void HandleIdleState()
@@ -259,7 +259,7 @@ public class PlayerKinematic : MonoBehaviour
         {
             movementInput = movementInput = Vector2.zero;
             agentMover.StopMovementBothAxis();
-            agentMover.PerformMovement();
+            agentMover.PerformMovement(grounded);
         }
     }
 
