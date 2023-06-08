@@ -2556,7 +2556,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4881266319384322795, guid: 0c5f7de6035bdfd43858ab13a7f9b8c3, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -1.8729734
+      value: -1.8738527
       objectReference: {fileID: 0}
     - target: {fileID: 4881266319423466473, guid: 0c5f7de6035bdfd43858ab13a7f9b8c3, type: 3}
       propertyPath: m_ChildCameras.Array.size
@@ -2625,6 +2625,26 @@ PrefabInstance:
       propertyPath: activePlayerManager
       value: 
       objectReference: {fileID: 1380991724}
+    - target: {fileID: 8006272237295690885, guid: ddb6ae58969e67042bc721687a2ab15e, type: 3}
+      propertyPath: m_Pivot.x
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8006272237295690885, guid: ddb6ae58969e67042bc721687a2ab15e, type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8006272237295690885, guid: ddb6ae58969e67042bc721687a2ab15e, type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8006272237295690885, guid: ddb6ae58969e67042bc721687a2ab15e, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8006272237295690885, guid: ddb6ae58969e67042bc721687a2ab15e, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 8006272237402477817, guid: ddb6ae58969e67042bc721687a2ab15e, type: 3}
       propertyPath: players
       value: 

@@ -5,22 +5,22 @@ using UnityEngine;
 public class UIAnimateArrow : MonoBehaviour
 {
     [SerializeField] ActivePlayerManager activePlayerManager;
+    [SerializeField] RectTransform[] targets;
     RectTransform myTransform;
+    IEnumerator coroutine;
     float moveSpeed = 4f;
-    float step;
     int offset;
-    Vector2 target;
+    int target;
 
     void Awake()
     {
         myTransform = GetComponent<RectTransform>();
-        step = myTransform.parent.GetComponent<RectTransform>().rect.width / 3;
     }
 
     private void Start() 
     {
         offset = 3 - activePlayerManager.GetNumberOfPlayersInScene();
-        target = new Vector2(step * offset, myTransform.anchoredPosition.y);
+        SetTarget(1);
     }
 
     private void OnEnable()
@@ -35,11 +35,25 @@ public class UIAnimateArrow : MonoBehaviour
 
     private void SetTarget(int value)
     {
-        target = new Vector2((step * (value - 1)) + (step * offset), myTransform.anchoredPosition.y);
+        target = (value - 1) + offset;
+        if (coroutine != null)
+        {
+            StopCoroutine(coroutine);
+        }
+        coroutine = AdjustArrowPositionRoutine();
+        StartCoroutine(coroutine);
     }
 
-    private void FixedUpdate()
+    IEnumerator AdjustArrowPositionRoutine()
     {
-        myTransform.anchoredPosition = Vector2.MoveTowards(myTransform.anchoredPosition, target, moveSpeed);
+        while (Mathf.Abs(myTransform.position.x - targets[target].position.x) > Mathf.Epsilon)
+        {
+            myTransform.position = Vector2.MoveTowards(
+            myTransform.position,
+            new Vector2 (targets[target].position.x, myTransform.position.y),
+            moveSpeed * Time.fixedDeltaTime);
+            yield return new WaitForFixedUpdate();
+        }
+        yield return null;
     }
 }

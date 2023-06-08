@@ -13,6 +13,7 @@ public class PlayerKinematic : MonoBehaviour
     [SerializeField] private float safetyDistance = 0.02f;
     [SerializeField][Range(1, 3)] private int id = 1;
     [SerializeField] private GameObject selectedSprite;
+    Animator myAnimator;
     private int selectedPlayer = 1;
     private Vector2 movementInput;
     private float halfPlayerHeight, halfPlayerWidth;
@@ -22,6 +23,8 @@ public class PlayerKinematic : MonoBehaviour
     private void Awake()
     {
         inputPlayer = new InputPlayer();
+        myAnimator = this.transform.parent.GetComponentInChildren<Animator>();
+        Debug.Log(myAnimator);
     }
 
     private void OnEnable() 
@@ -58,6 +61,7 @@ public class PlayerKinematic : MonoBehaviour
     {
         if (IsSelected() && grounded)
         {
+            myAnimator?.SetTrigger(ConstManager.JUMP);
             agentMover.Jump();
             justJumped = true;
             grounded = false;
@@ -224,6 +228,10 @@ public class PlayerKinematic : MonoBehaviour
         (grounded, hitResult) = CheckIfGrounded();
         if (grounded)
         {
+            if (currentState == State.Falling)
+            {
+                myAnimator?.SetTrigger(ConstManager.LAND);
+            }
             currentState = State.Idle;
             agentMover.StopMovementBothAxis();
             float distance = 0;
