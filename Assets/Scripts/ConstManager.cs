@@ -6,9 +6,9 @@ public struct ConstManager
 {
     public const string FLOOR_LAYER = "Floor";
     public const string PLAYER_LAYER = "Player";
+    public const string CHECKPOINT_LAYER = "CheckPoint";
     public const string JUMP = "Jump";
     public const string LAND = "Land";
     public const string FALLING = "Falling";
     public const string TELEPORTER = "Teleporter";
-
 }

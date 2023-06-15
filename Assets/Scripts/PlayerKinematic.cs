@@ -284,7 +284,7 @@ public class PlayerKinematic : MonoBehaviour
         }
     }
 
-    private bool IsSelected() => selectedPlayer == id;
+    public bool IsSelected() => selectedPlayer == id;
 }
 
 public enum State

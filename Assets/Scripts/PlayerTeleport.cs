@@ -5,9 +5,15 @@ using UnityEngine.InputSystem;
 
 public class PlayerTeleport : MonoBehaviour
 {
+    PlayerKinematic playerKinematic;
     GameObject currentTeleport;
     float teleportCooldown = 1f;
     bool isOnCooldown = false;
+
+    void Awake()
+    {
+        playerKinematic = GetComponentInChildren<PlayerKinematic>();
+    }
 
     void OnTriggerEnter2D(Collider2D other)
     {
@@ -30,6 +36,7 @@ public class PlayerTeleport : MonoBehaviour
 
     void OnTeleport(InputValue value)
     {
+        if (!playerKinematic.IsSelected()) { return ; }
         if (value.isPressed && currentTeleport != null && !isOnCooldown)
         {
             isOnCooldown = true;
