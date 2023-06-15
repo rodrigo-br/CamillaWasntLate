@@ -4,16 +4,30 @@ using UnityEngine;
 
 public class Death : MonoBehaviour
 {
-    [SerializeField] Vector3[] checkPoint;
     int checkPointIndex = 0;
+    Vector3 checkPoint;
 
-    public void Die() => transform.position = checkPoint[checkPointIndex];
-
-    public void SetCheckPoint(int index)
+    void Awake()
     {
-        if (index > checkPointIndex)
+        checkPoint = transform.position;
+    }
+
+    void Update()
+    {
+        if (Input.GetKeyDown("."))
         {
-            checkPointIndex = index;
+            Die();
+        }
+    }
+
+    public void Die() => transform.position = checkPoint;
+
+    public void SetCheckPoint(Checkpoint newCheckPoint)
+    {
+        if (newCheckPoint.Index > checkPointIndex)
+        {
+            checkPointIndex = newCheckPoint.Index;
+            checkPoint = newCheckPoint.transform.position;
         }
     }
 
@@ -21,7 +35,7 @@ public class Death : MonoBehaviour
     {
         if (other.CompareTag(ConstManager.CHECKPOINT_LAYER))
         {
-            SetCheckPoint(other.GetComponent<Checkpoint>().Index);
+            SetCheckPoint(other.GetComponent<Checkpoint>());
         }
     }
 }
