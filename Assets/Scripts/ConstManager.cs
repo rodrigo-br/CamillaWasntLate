@@ -8,5 +8,7 @@ public struct ConstManager
     public const string PLAYER_LAYER = "Player";
     public const string JUMP = "Jump";
     public const string LAND = "Land";
+    public const string FALLING = "Falling";
+    public const string TELEPORTER = "Teleporter";
 
 }

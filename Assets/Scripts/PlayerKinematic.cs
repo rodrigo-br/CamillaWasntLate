@@ -24,7 +24,6 @@ public class PlayerKinematic : MonoBehaviour
     {
         inputPlayer = new InputPlayer();
         myAnimator = this.transform.parent.GetComponentInChildren<Animator>();
-        Debug.Log(myAnimator);
     }
 
     private void OnEnable() 
@@ -62,6 +61,7 @@ public class PlayerKinematic : MonoBehaviour
         if (IsSelected() && grounded)
         {
             myAnimator?.SetTrigger(ConstManager.JUMP);
+            AudioManager.Instance.PlayJumpingClip();
             agentMover.Jump();
             justJumped = true;
             grounded = false;
@@ -84,6 +84,15 @@ public class PlayerKinematic : MonoBehaviour
         HandleJumpState();
         HandleFallState();
 
+        // if (grounded && currentState == State.Moving)
+        // {
+        //     AudioManager.Instance.PlayWalkingClip();
+        // }
+        // else
+        // {
+        //     AudioManager.Instance.StopWalkingClip();
+        // }
+
         agentMover.PerformMovement(grounded);
     }
 
@@ -95,6 +104,7 @@ public class PlayerKinematic : MonoBehaviour
         if (grounded == false)
         {
             currentState = State.Falling;
+            myAnimator?.SetBool(ConstManager.FALLING, true);
         }
         else
         {
@@ -112,6 +122,7 @@ public class PlayerKinematic : MonoBehaviour
         if (grounded == false)
         {
             currentState = State.Falling;
+            myAnimator?.SetBool(ConstManager.FALLING, true);
         }
         else
         {
@@ -142,6 +153,7 @@ public class PlayerKinematic : MonoBehaviour
             if (agentMover.CurrentVelocity.y <= 0)
             {
                 currentState = State.Falling;
+                myAnimator?.SetBool(ConstManager.FALLING, true);
             }
             else
             {
@@ -160,6 +172,7 @@ public class PlayerKinematic : MonoBehaviour
         if (upCollision)
         {
             currentState = State.Falling;
+            myAnimator?.SetBool(ConstManager.FALLING, true);
             agentMover.StopMovementY();
         }
         else
@@ -230,7 +243,8 @@ public class PlayerKinematic : MonoBehaviour
         {
             if (currentState == State.Falling)
             {
-                myAnimator?.SetTrigger(ConstManager.LAND);
+                myAnimator?.SetBool(ConstManager.FALLING, false);
+                AudioManager.Instance.PlayLandingClip();
             }
             currentState = State.Idle;
             agentMover.StopMovementBothAxis();

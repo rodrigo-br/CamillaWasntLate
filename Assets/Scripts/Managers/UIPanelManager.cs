@@ -39,6 +39,7 @@ public class UIPanelManager : MonoBehaviour
 
     private Color PickPlayerColor(Transform child)
     {
-        return child.GetComponentInChildren<SpriteRenderer>().sprite.texture.GetPixel(0, 0);
+        SpriteRenderer sr = child.GetComponentInChildren<SpriteRenderer>();
+        return sr.sprite.texture.GetPixel((int)(sr.bounds.size.x / 2), (int)sr.bounds.size.y / 2);
     }
 }

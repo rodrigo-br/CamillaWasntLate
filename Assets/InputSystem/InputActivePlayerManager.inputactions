@@ -50,6 +50,34 @@
                     "isPartOfComposite": false
                 }
             ]
+        },
+        {
+            "name": "TeleportPlayer",
+            "id": "e847ae24-bf01-4a47-a86e-31981222f1a8",
+            "actions": [
+                {
+                    "name": "Teleport",
+                    "type": "Button",
+                    "id": "6c46c4b6-d5ce-48e9-a7ef-90fae76f2b61",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                }
+            ],
+            "bindings": [
+                {
+                    "name": "",
+                    "id": "3e42a94a-e5dd-417e-879d-ac05b8460b08",
+                    "path": "<Keyboard>/t",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Teleport",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                }
+            ]
         }
     ],
     "controlSchemes": []
