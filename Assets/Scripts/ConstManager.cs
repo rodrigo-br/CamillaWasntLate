@@ -11,4 +11,5 @@ public struct ConstManager
     public const string LAND = "Land";
     public const string FALLING = "Falling";
     public const string TELEPORTER = "Teleporter";
+    public const string MOVING_PLATFORM = "MovingPlatform";
 }

@@ -8,7 +8,7 @@ public class ActivePlayerManager : MonoBehaviour
 {
     public delegate void SelectedPlayer(int value);
     public SelectedPlayer OnSelectedPlayer;
-    [SerializeField] private PlayerKinematic[] playersInScene;
+    [SerializeField] private PlayerMovements[] playersInScene;
     [SerializeField] CinemachineVirtualCamera virtualCamera;
 
     void Start()
@@ -22,7 +22,7 @@ public class ActivePlayerManager : MonoBehaviour
         if (pressed != 0 && pressed <= playersInScene.Length)
         {
             virtualCamera.Follow = playersInScene[pressed - 1].transform;
-            foreach (PlayerKinematic player in playersInScene)
+            foreach (PlayerMovements player in playersInScene)
             {
                 player.SetSelectedPlayer(pressed);
                 OnSelectedPlayer?.Invoke(pressed);

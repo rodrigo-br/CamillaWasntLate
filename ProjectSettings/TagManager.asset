@@ -6,6 +6,8 @@ TagManager:
   tags:
   - Teleporter
   - Checkpoint
+  - MovingPlatform
+  - Floor
   layers:
   - Default
   - TransparentFX

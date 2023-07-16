@@ -16,7 +16,7 @@ public class ExitPortal : MonoBehaviour
 
     void OnTriggerEnter2D(Collider2D other)
     {
-        PlayerKinematic player = other.transform.parent.GetComponentInChildren<PlayerKinematic>();
+        PlayerMovements player = other.transform.parent.GetComponentInChildren<PlayerMovements>();
 
         if (player != null && player.Id == id)
         {
@@ -27,7 +27,7 @@ public class ExitPortal : MonoBehaviour
 
     void OnTriggerExit2D(Collider2D other)
     {
-        PlayerKinematic player = other.transform.parent.GetComponentInChildren<PlayerKinematic>();
+        PlayerMovements player = other.transform.parent.GetComponentInChildren<PlayerMovements>();
 
         if (player != null && player.Id == id)
         {
