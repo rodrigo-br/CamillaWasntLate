@@ -27,7 +27,7 @@ public class ExitPortal : MonoBehaviour
 
     void OnTriggerExit2D(Collider2D other)
     {
-        PlayerMovements player = other.transform.parent.GetComponentInChildren<PlayerMovements>();
+        PlayerMovements player = other.gameObject.GetComponent<PlayerMovements>();
 
         if (player != null && player.Id == id)
         {
