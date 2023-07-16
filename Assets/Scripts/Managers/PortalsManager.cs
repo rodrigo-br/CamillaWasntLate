@@ -30,6 +30,7 @@ public class PortalsManager : MonoBehaviour
             OnEndLevel?.Invoke();
         }
     }
+
     void OnDisable() 
     {
         foreach(ExitPortal portal in exitPortals)
