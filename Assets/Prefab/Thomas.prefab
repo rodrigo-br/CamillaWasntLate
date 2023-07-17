@@ -374,10 +374,10 @@ MonoBehaviour:
   id: 1
   selectedSprite: {fileID: 6112870721232064242}
   myFeetCollider: {fileID: 6635509439335301840}
-  maxSpeed: 5
-  maxAcceleration: 35
+  maxSpeed: 4
+  maxAcceleration: 30
   maxAirAcceleration: 20
-  jumpHeight: 4
+  jumpHeight: 3
   downwardMovementMultiplier: 3
   upwardMovementMultiplier: 1.7
 --- !u!114 &4788475112463694212

@@ -2208,7 +2208,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4881266319384322795, guid: 0c5f7de6035bdfd43858ab13a7f9b8c3, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -2.9654355
+      value: -2.9804401
       objectReference: {fileID: 0}
     - target: {fileID: 4881266319384322795, guid: 0c5f7de6035bdfd43858ab13a7f9b8c3, type: 3}
       propertyPath: m_LocalPosition.y
@@ -3644,6 +3644,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1581927195}
   - component: {fileID: 1581927194}
+  - component: {fileID: 1581927196}
   m_Layer: 0
   m_Name: SceneManager
   m_TagString: Untagged
@@ -3678,6 +3679,19 @@ Transform:
   m_Father: {fileID: 460849766}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1581927196
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1581927193}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c38b694a9d9c06f428f91e3e608b3a14, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  menu: {fileID: 0}
 --- !u!1 &1769903456
 GameObject:
   m_ObjectHideFlags: 0
