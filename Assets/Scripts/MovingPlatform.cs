@@ -4,18 +4,18 @@ using UnityEngine;
 
 public class MovingPlatform : MonoBehaviour
 {
-    [SerializeField] Transform target;
-    [SerializeField] float moveSpeed = 10f;
-    Vector3 startPosition;
-    Vector3 currentTarget;
+    [SerializeField] private Transform target;
+    [SerializeField] private float moveSpeed = 10f;
+    private Vector3 startPosition;
+    private Vector3 currentTarget;
 
-    void Awake() 
+    private void Awake() 
     {
         startPosition = transform.position;
         currentTarget = target.position;
     }
 
-    void FixedUpdate()
+    private void FixedUpdate()
     {
         MoveToTarget();
     }
@@ -27,6 +27,22 @@ public class MovingPlatform : MonoBehaviour
         if (Vector3.Distance(transform.position, currentTarget) < 0.1f)
         {
             currentTarget = (Vector3.Distance(currentTarget, startPosition) < 0.1f) ? target.position : startPosition;
+        }
+    }
+
+    private void OnTriggerEnter2D(Collider2D other) 
+    {
+        if (other.CompareTag(ConstManager.PLAYER_LAYER))
+        {
+            other.transform.SetParent(this.transform);
+        }
+    }
+
+    private void OnTriggerExit2D(Collider2D other)
+    {
+        if (other.CompareTag(ConstManager.PLAYER_LAYER))
+        {
+            other.transform.SetParent(null);
         }
     }
 }
