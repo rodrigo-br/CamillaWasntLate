@@ -254,10 +254,10 @@ GameObject:
   m_Component:
   - component: {fileID: 6112870722306649292}
   - component: {fileID: 6112870722306649293}
-  - component: {fileID: 2568656636784761329}
   - component: {fileID: 4671190783894850555}
   - component: {fileID: 8088433490871359987}
   - component: {fileID: 1940007302}
+  - component: {fileID: 1613605878905669162}
   m_Layer: 7
   m_Name: John
   m_TagString: Player
@@ -303,19 +303,6 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 1
   m_Constraints: 5
---- !u!114 &2568656636784761329
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6112870722306649294}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e6dff6e14c2d97844aca10b8e71e802a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  teleportMaterial: {fileID: 2100000, guid: ee466162ab97f424c83ed2851ab50780, type: 2}
 --- !u!114 &4671190783894850555
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -393,3 +380,16 @@ MonoBehaviour:
   jumpHeight: 4
   downwardMovementMultiplier: 3
   upwardMovementMultiplier: 1.7
+--- !u!114 &1613605878905669162
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6112870722306649294}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e6dff6e14c2d97844aca10b8e71e802a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  teleportMaterial: {fileID: 2100000, guid: ee466162ab97f424c83ed2851ab50780, type: 2}

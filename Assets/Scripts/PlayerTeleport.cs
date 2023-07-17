@@ -5,23 +5,23 @@ using UnityEngine.InputSystem;
 
 public class PlayerTeleport : MonoBehaviour
 {
-    [SerializeField] Material teleportMaterial;
-    Material defaultMaterial;
-    PlayerMovements playerMovements;
-    GameObject currentTeleport;
-    SpriteRenderer mySpriteRenderer;
-    Vector3 targetPosition;
-    float teleportCooldown = 1f;
-    bool isOnCooldown = false;
+    [SerializeField] private Material teleportMaterial;
+    private Material defaultMaterial;
+    private PlayerMovements playerMovements;
+    private GameObject currentTeleport;
+    private SpriteRenderer mySpriteRenderer;
+    private Vector3 targetPosition;
+    private float teleportCooldown = 1f;
+    private bool isOnCooldown = false;
 
-    void Awake()
+    private void Awake()
     {
-        playerMovements = GetComponentInChildren<PlayerMovements>();
+        playerMovements = GetComponent<PlayerMovements>();
         mySpriteRenderer = GetComponentInChildren<SpriteRenderer>();
         defaultMaterial = mySpriteRenderer.material;
     }
 
-    void OnTriggerEnter2D(Collider2D other)
+    private void OnTriggerEnter2D(Collider2D other)
     {
         if (other.CompareTag(ConstManager.TELEPORTER))
         {
@@ -29,23 +29,34 @@ public class PlayerTeleport : MonoBehaviour
         }
     }
 
-    void OnTriggerExit2D(Collider2D other)
+    private void OnTriggerStay2D(Collider2D other)
     {
         if (other.CompareTag(ConstManager.TELEPORTER))
         {
-            if (other.gameObject == currentTeleport)
-            {
-                currentTeleport = null;
-            }
+            currentTeleport = other.gameObject;
         }
     }
 
-    void OnTeleport(InputValue value)
+    private void OnTriggerExit2D(Collider2D other)
+    {
+        if (other.CompareTag(ConstManager.TELEPORTER))
+        {
+            currentTeleport = null;
+        }
+    }
+
+    private void OnTeleport(InputValue value)
     {
         if (!playerMovements.IsSelected()) { return ; }
         if (value.isPressed && currentTeleport != null && !isOnCooldown)
         {
-            targetPosition = currentTeleport.GetComponent<Teleports>().Destination.position;
+            Transform destination = currentTeleport.GetComponent<Teleports>().Destination;
+            if (destination.gameObject.GetComponent<BoxCollider2D>().IsTouchingLayers(
+                LayerMask.GetMask(ConstManager.PLAYER_LAYER)))
+            {
+                return ;
+            }
+            targetPosition = destination.position;
             isOnCooldown = true;
             mySpriteRenderer.material = new Material(teleportMaterial);
             StartCoroutine(ChangeMaterialValue(mySpriteRenderer.material.GetFloat("_Progress"), 0));
