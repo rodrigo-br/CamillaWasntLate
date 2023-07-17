@@ -128,6 +128,11 @@ public class PlayerMovements : MonoBehaviour
         if (!on)
         {
             direction = Vector2.zero;
+            myRigidBody.constraints = RigidbodyConstraints2D.FreezePositionX | RigidbodyConstraints2D.FreezeRotation;
+        }
+        else
+        {
+            myRigidBody.constraints = RigidbodyConstraints2D.FreezeRotation;
         }
     }
 
