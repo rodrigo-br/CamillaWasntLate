@@ -1,16 +1,17 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class AudioManager : Singleton<AudioManager>
 {
     [SerializeField] AudioClip walkingSFXClip;
     [SerializeField] AudioClip jumpingSFXClip;
     [SerializeField] AudioClip landingSFXClip;
+    [SerializeField] Slider musicSlider;
+    [SerializeField] Slider sfxSlider;
     AudioSource myAudioSource;
     IEnumerator walkingClipRoutine;
-    float musicVolume = 0.5f;
-    float sfxVolume = 0.4f;
 
     protected override void Awake()
     {
@@ -21,13 +22,14 @@ public class AudioManager : Singleton<AudioManager>
 
     void Start()
     {
-        myAudioSource.volume = musicVolume;
+        musicSlider.onValueChanged.AddListener(_ => myAudioSource.volume = musicSlider.value);
+        myAudioSource.volume = musicSlider.value;
         myAudioSource.Play();
     }
 
     void PlaySFXClip(AudioClip clip)
     {
-        AudioSource.PlayClipAtPoint(clip, Camera.main.transform.position, sfxVolume);
+        AudioSource.PlayClipAtPoint(clip, Camera.main.transform.position, sfxSlider.value);
     }
 
     public void PlayJumpingClip() => PlaySFXClip(jumpingSFXClip);

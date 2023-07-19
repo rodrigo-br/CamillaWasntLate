@@ -7,14 +7,13 @@ using UnityEngine.UI;
 
 public class PauseManager : MonoBehaviour
 {
+    [SerializeField] GameObject pauseCanvas;
     public static bool IsPaused { get; private set; } = false;
     InputPlayer inputPlayer;
-    // [SerializeField] GameObject menu;
 
     void Awake()
     {
         inputPlayer = new InputPlayer();
-        // menu.GetComponentInChildren<Button>().onClick.AddListener(SetPauseState);
     }
 
     void OnEnable()
@@ -24,19 +23,12 @@ public class PauseManager : MonoBehaviour
 
     void Start()
     {
-        inputPlayer.UI.Esc.performed += _ => SetPauseState();
+        inputPlayer.UI.Esc.performed += _ => SetPauseState(IsPaused);
     }
 
-    void SetPauseState()
+    void SetPauseState(bool currentState)
     {
-        if (IsPaused)
-        {
-            Resume();
-        }
-        else
-        {
-            Pause();
-        }
+        Pause(!currentState);
     }
 
     void OnDisable()
@@ -44,17 +36,10 @@ public class PauseManager : MonoBehaviour
         inputPlayer.Disable();
     }
 
-    public void Pause()
+    public void Pause(bool newState)
     {
-        Time.timeScale = 0;
-        IsPaused = true;
-        // menu.SetActive(IsPaused);
-    }
-
-    public void Resume()
-    {
-        Time.timeScale = 1;
-        IsPaused = false;
-        // menu.SetActive(IsPaused);
+        IsPaused = newState;
+        Time.timeScale = IsPaused == true ? 0 : 1;
+        pauseCanvas.SetActive(IsPaused);
     }
 }

@@ -81,6 +81,7 @@ public class PlayerMovements : MonoBehaviour
         {
             jumpSpeed = Mathf.Max(jumpSpeed - velocity.y, 0f);
         }
+        AudioManager.Instance.PlayJumpingClip();
         velocity.y += jumpSpeed;
     }
 
